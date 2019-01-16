@@ -105,7 +105,7 @@ public class Board {
 		for(int j = 0; j < 3; j++){
 		    if(isSquareAvailable(i, j)){
 			board[i][j] = currentPlayer;
-			if(hasWon(i,j) == false){
+			if(!hasWon(i,j)){
 			    isTie = true;
 			}
 			board[i][j] =  Player.NONE;
@@ -117,7 +117,7 @@ public class Board {
     }
     
     public boolean isTie(){
-	return(isTie);
+	return isTie;
     }
 
     private boolean isOnRightDiag(int col, int row){
