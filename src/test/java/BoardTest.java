@@ -177,7 +177,7 @@ public class BoardTest {
         assert(board.getWinner().equals(Board.Player.O));
     }
     
-    @Test
+       @Test
     public void testTieCorner() throws InvalidMoveException {
 
 	board.playMove(0,1); //player X
@@ -188,7 +188,7 @@ public class BoardTest {
 	board.playMove(0,2);
 	board.playMove(2,0); //player X 
 	board.playMove(2,1);
-	assert(board.isTie().equals(true));
+	assert(board.isTie() == true);
     }
     
     @Test
@@ -202,7 +202,7 @@ public class BoardTest {
         board.playMove(1,1);
         board.playMove(2,2); //player X 
         board.playMove(2,1);
-	assert(board.isTie().equals(true));
+	assert(board.isTie() == true);
     }
 
     @Test
@@ -216,9 +216,9 @@ public class BoardTest {
         board.playMove(2,0);
         board.playMove(2,2); //player X 
         board.playMove(2,1);
-	assert(board.isTie().equals(true));
+	assert(board.isTie() == true);
     }
-
+    
     @Test
     public void testTieNotTie() throws InvalidMoveException {
 
@@ -229,7 +229,7 @@ public class BoardTest {
         board.playMove(1,0);
         board.playMove(2,0); //player 0
 	
-	assert(board.isTie().equals(false));
+	assert(board.isTie() == false);
     }
     
 }
