@@ -50,10 +50,12 @@ public class Board {
 	    occupiedSquares++;
             if (hasWon(row, col))
                 winner = currentPlayer;
-            else if(currentPlayer == Player.X)
-                currentPlayer = Player.O;
             else
-                currentPlayer = Player.X;
+		if(currentPlayer == Player.X)
+		    currentPlayer = Player.O;
+		else 
+		    currentPlayer = Player.X;
+	        checkTie();
         }
 
     }
@@ -98,13 +100,11 @@ public class Board {
     }
 
     public void checkTie(){
-        printBoard();
 	if(occupiedSquares == 8){
 	    for (int i = 0; i < 3; i++){
 		for(int j = 0; j < 3; j++){
 		    if(isSquareAvailable(i, j)){
 			board[i][j] = currentPlayer;
-			printBoard();
 			if(hasWon(i,j) == false){
 			    isTie = true;
 			}

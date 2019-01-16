@@ -39,8 +39,7 @@ public class TicTacToeGame {
             String input[] = line.split(",");
             try {
                 board.playMove(Integer.parseInt(input[0]), Integer.parseInt(input[1]));
-		board.checkTie();
-            } catch (InvalidMoveException e) {
+	    } catch (InvalidMoveException e) {
                 System.out.println("Invalid coordinates. Try again");
                 promptNextPlayer();
             }
