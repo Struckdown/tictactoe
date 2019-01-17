@@ -37,6 +37,10 @@ public class TicTacToeGame {
     public void playGame(){
         Scanner keyboardScanner = new Scanner(System.in);
 
+        int xWins = 0;
+        int oWins = 0;
+        int ties = 0;
+
         boolean playAgain = true;
         while (playAgain){
             while (board.getWinner() == null && !board.isTie()){
@@ -56,10 +60,17 @@ public class TicTacToeGame {
             //win condition
             if(!board.isTie()){
                 System.out.println("Player " + board.getWinner() + " has won the game!");
+                switch (board.getWinner()) {
+                  case X: ++xWins; break;
+                  case O: ++oWins; break;
+                }
             } else {
             //tie condition
                 System.out.println("The game is a tie.");
+                ++ties;
             }
+            System.out.printf("\nX wins: %d, O wins: %d, Ties: %d\n\n",
+                              xWins, oWins, ties);
 
             promptPlayAgain();
             String line = keyboardScanner.nextLine();
