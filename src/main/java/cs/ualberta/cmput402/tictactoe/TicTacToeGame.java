@@ -32,22 +32,30 @@ public class TicTacToeGame {
     public void playGame(){
         Scanner keyboardScanner = new Scanner(System.in);
 
-        while (board.getWinner() == null){
+        while (board.getWinner() == null && !board.isTie()){
             board.printBoard();
             promptNextPlayer();
             String line = keyboardScanner.nextLine();
             String input[] = line.split(",");
             try {
                 board.playMove(Integer.parseInt(input[0]), Integer.parseInt(input[1]));
-            } catch (InvalidMoveException e) {
+	    } catch (InvalidMoveException e) {
                 System.out.println("Invalid coordinates. Try again");
                 promptNextPlayer();
             }
         }
 
-        board.printBoard();
-        System.out.println("Player " + board.getWinner() + " has won the game!");
-    }
+	//win condition
+	if(!board.isTie()){
+            board.printBoard();
+            System.out.println("Player " + board.getWinner() + " has won the game!");
+	} else {
+	//tie condition
+	    board.printBoard();
+	    System.out.println("The game is a tie.");
+	}
+	
+	}
 
     public static void main(String args[]){
         TicTacToeGame game = new TicTacToeGame();
