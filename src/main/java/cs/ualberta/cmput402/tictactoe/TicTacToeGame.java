@@ -51,7 +51,7 @@ public class TicTacToeGame {
                     promptNextPlayer();
                 }
             }
-          
+
             board.printBoard();
             //win condition
             if(!board.isTie()){
@@ -63,11 +63,11 @@ public class TicTacToeGame {
 
             promptPlayAgain();
             String line = keyboardScanner.nextLine();
-            while (line.equals("y") && line.equals("n")){
+            while (!line.equals("y") && !line.equals("n")){
                 promptPlayAgain();
                 line = keyboardScanner.nextLine();
             }
-          
+
             if (line.equals("y")){
                 board = new Board();
             } else {
