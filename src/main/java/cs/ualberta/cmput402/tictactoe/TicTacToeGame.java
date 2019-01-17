@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 /**
  * Created by snadi on 2018-07-18.
+ * Edited by braedy on 2019-01-16.
  */
 public class TicTacToeGame {
 
@@ -29,33 +30,51 @@ public class TicTacToeGame {
         }
     }
 
+    public void promptPlayAgain(){
+      System.out.println("Do you want to play again? (y/n)");
+    }
+
     public void playGame(){
         Scanner keyboardScanner = new Scanner(System.in);
 
-        while (board.getWinner() == null && !board.isTie()){
-            board.printBoard();
-            promptNextPlayer();
-            String line = keyboardScanner.nextLine();
-            String input[] = line.split(",");
-            try {
-                board.playMove(Integer.parseInt(input[0]), Integer.parseInt(input[1]));
-	    } catch (InvalidMoveException e) {
-                System.out.println("Invalid coordinates. Try again");
+        boolean playAgain = true;
+        while (playAgain){
+            while (board.getWinner() == null && !board.isTie()){
+                board.printBoard();
                 promptNextPlayer();
+                String line = keyboardScanner.nextLine();
+                String input[] = line.split(",");
+                try {
+                    board.playMove(Integer.parseInt(input[0]), Integer.parseInt(input[1]));
+                } catch (InvalidMoveException e) {
+                    System.out.println("Invalid coordinates. Try again");
+                    promptNextPlayer();
+                }
+            }
+          
+            board.printBoard();
+            //win condition
+            if(!board.isTie()){
+                System.out.println("Player " + board.getWinner() + " has won the game!");
+            } else {
+            //tie condition
+                System.out.println("The game is a tie.");
+            }
+
+            promptPlayAgain();
+            String line = keyboardScanner.nextLine();
+            while (line.equals("y") && line.equals("n")){
+                promptPlayAgain();
+                line = keyboardScanner.nextLine();
+            }
+          
+            if (line.equals("y")){
+                board = new Board();
+            } else {
+                playAgain = false;
             }
         }
-
-	//win condition
-	if(!board.isTie()){
-            board.printBoard();
-            System.out.println("Player " + board.getWinner() + " has won the game!");
-	} else {
-	//tie condition
-	    board.printBoard();
-	    System.out.println("The game is a tie.");
-	}
-	
-	}
+    }
 
     public static void main(String args[]){
         TicTacToeGame game = new TicTacToeGame();
