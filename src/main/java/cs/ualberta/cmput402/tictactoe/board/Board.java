@@ -13,7 +13,7 @@ public class Board {
     private Player board[][];
     private boolean isTie;
     private int occupiedSquares;
-    
+
     public Board(){
         board = new Player[3][3];
         initBoard();
@@ -26,8 +26,8 @@ public class Board {
             for(int j = 0; j < 3; j++)
                 board[i][j] = Player.NONE;
 
-	occupiedSquares = 0;
-	isTie = false;
+    occupiedSquares = 0;
+    isTie = false;
     }
 
     public void playMove(int row, int col) throws InvalidMoveException {
@@ -47,15 +47,15 @@ public class Board {
             throw new InvalidMoveException(stringBuilder.toString());
         }else{
             board[row][col] = currentPlayer;
-	    occupiedSquares++;
+        occupiedSquares++;
             if (hasWon(row, col))
                 winner = currentPlayer;
             else
-		if(currentPlayer == Player.X)
-		    currentPlayer = Player.O;
-		else 
-		    currentPlayer = Player.X;
-	        checkTie();
+        if(currentPlayer == Player.X)
+            currentPlayer = Player.O;
+        else
+            currentPlayer = Player.X;
+            checkTie();
         }
 
     }
@@ -100,24 +100,24 @@ public class Board {
     }
 
     public void checkTie(){
-	if(occupiedSquares == 8){
-	    for (int i = 0; i < 3; i++){
-		for(int j = 0; j < 3; j++){
-		    if(isSquareAvailable(i, j)){
-			board[i][j] = currentPlayer;
-			if(!hasWon(i,j)){
-			    isTie = true;
-			}
-			board[i][j] =  Player.NONE;
-		    }
-		}
-	    }
-	}
-	
+    if(occupiedSquares == 8){
+        for (int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            if(isSquareAvailable(i, j)){
+            board[i][j] = currentPlayer;
+            if(!hasWon(i,j)){
+                isTie = true;
+            }
+            board[i][j] =  Player.NONE;
+            }
+        }
+        }
     }
-    
+
+    }
+
     public boolean isTie(){
-	return isTie;
+    return isTie;
     }
 
     private boolean isOnRightDiag(int col, int row){
