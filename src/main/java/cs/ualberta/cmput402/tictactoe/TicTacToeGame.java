@@ -57,15 +57,15 @@ public class TicTacToeGame {
             }
 
             board.printBoard();
-            //win condition
             if(!board.isTie()){
+                //win condition
                 System.out.println("Player " + board.getWinner() + " has won the game!");
                 switch (board.getWinner()) {
                   case X: ++xWins; break;
                   case O: ++oWins; break;
                 }
             } else {
-            //tie condition
+                //tie condition
                 System.out.println("The game is a tie.");
                 ++ties;
             }
