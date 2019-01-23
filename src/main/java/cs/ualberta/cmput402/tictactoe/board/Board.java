@@ -55,11 +55,10 @@ public class Board {
             currentPlayer = Player.O;
         else
             currentPlayer = Player.X;
-            checkTie();
+        checkTie();
         }
 
     }
-
 
     private boolean isSquareAvailable(int row, int col){
         return (board[row][col] != Player.X && board[row][col] != Player.O);
@@ -100,24 +99,23 @@ public class Board {
     }
 
     public void checkTie(){
-    if(occupiedSquares == 8){
-        for (int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            if(isSquareAvailable(i, j)){
-            board[i][j] = currentPlayer;
-            if(!hasWon(i,j)){
-                isTie = true;
-            }
-            board[i][j] =  Player.NONE;
+        if(occupiedSquares == 8){
+            for (int i = 0; i < 3; i++){
+                for(int j = 0; j < 3; j++){
+                    if(isSquareAvailable(i, j)){
+                        board[i][j] = currentPlayer;
+                        if(!hasWon(i,j)){
+                            isTie = true;
+                        }
+                        board[i][j] =  Player.NONE;
+                    }
+                }
             }
         }
-        }
-    }
-
     }
 
     public boolean isTie(){
-    return isTie;
+        return isTie;
     }
 
     private boolean isOnRightDiag(int col, int row){
@@ -154,6 +152,4 @@ public class Board {
     public Player getPlayerAtPos(int row, int col){
         return board[row][col];
     }
-
-
 }
