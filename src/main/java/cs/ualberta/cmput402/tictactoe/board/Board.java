@@ -14,16 +14,22 @@ public class Board {
     private boolean isTie;
     private int occupiedSquares;
 
+    private static final int BOARD_DIM;
+
+    static {
+        BOARD_DIM = 3;
+    }
+
     public Board(){
-        board = new Player[3][3];
+        board = new Player[BOARD_DIM][BOARD_DIM];
         initBoard();
         winner = null;
         currentPlayer = Player.X;
     }
 
     private void initBoard(){
-        for (int i = 0; i < 3; i++)
-            for(int j = 0; j < 3; j++)
+        for (int i = 0; i < BOARD_DIM; i++)
+            for(int j = 0; j < BOARD_DIM; j++)
                 board[i][j] = Player.NONE;
 
     occupiedSquares = 0;
@@ -32,7 +38,7 @@ public class Board {
 
     public void playMove(int row, int col) throws InvalidMoveException {
 
-        if(row < 0 || row >= 3 || col <0 || col >=3)
+        if(row < 0 || row >= BOARD_DIM || col < 0 || col >= BOARD_DIM)
             throw new InvalidMoveException("Input coordinates are outside the board. Try again");
 
         if(!isSquareAvailable(row, col)){
@@ -100,8 +106,8 @@ public class Board {
 
     private void checkTie(){
         if(occupiedSquares == 8){
-            for (int i = 0; i < 3; i++){
-                for(int j = 0; j < 3; j++){
+            for (int i = 0; i < BOARD_DIM; i++){
+                for(int j = 0; j < BOARD_DIM; j++){
                     if(isSquareAvailable(i, j)){
                         board[i][j] = currentPlayer;
                         if(!hasWon(i,j)){
@@ -127,8 +133,8 @@ public class Board {
     }
 
     public void printBoard(){
-        for(int i  = 0; i < 3; i++){
-            for(int j = 0 ; j < 3; j++){
+        for(int i  = 0; i < BOARD_DIM; i++){
+            for(int j = 0 ; j < BOARD_DIM; j++){
 
                System.out.print(getSymbol(board[i][j]));
 
@@ -151,5 +157,9 @@ public class Board {
 
     public Player getPlayerAtPos(int row, int col){
         return board[row][col];
+    }
+
+    public int getBoardDim() {
+      return BOARD_DIM;
     }
 }
