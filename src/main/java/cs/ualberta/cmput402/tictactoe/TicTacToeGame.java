@@ -18,7 +18,7 @@ public class TicTacToeGame {
         board = new Board();
     }
 
-    public void promptNextPlayer(){
+    private void promptNextPlayer(){
         switch(board.getCurrentPlayer()){
             case X:
                 System.out.println("It's player " + board.getSymbol(board.getCurrentPlayer()) + "'s turn. Please enter the coordinates of your next move as x,y: ");
@@ -30,7 +30,7 @@ public class TicTacToeGame {
         }
     }
 
-    public void promptPlayAgain(){
+    private void promptPlayAgain(){
       System.out.println("Do you want to play again? (y/n)");
     }
 
