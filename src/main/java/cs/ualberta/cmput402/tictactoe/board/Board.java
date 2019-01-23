@@ -53,15 +53,14 @@ public class Board {
             throw new InvalidMoveException(stringBuilder.toString());
         }else{
             board[row][col] = currentPlayer;
-        occupiedSquares++;
+            occupiedSquares++;
             if (hasWon(row, col))
                 winner = currentPlayer;
+            else if(currentPlayer == Player.X)
+                currentPlayer = Player.O;
             else
-        if(currentPlayer == Player.X)
-            currentPlayer = Player.O;
-        else
-            currentPlayer = Player.X;
-        checkTie();
+                currentPlayer = Player.X;
+            checkTie();
         }
 
     }
