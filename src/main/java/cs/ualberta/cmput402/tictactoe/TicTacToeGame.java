@@ -18,7 +18,7 @@ public class TicTacToeGame {
         board = new Board();
     }
 
-    public void promptNextPlayer(){
+    private void promptNextPlayer(){
         switch(board.getCurrentPlayer()){
             case X:
                 System.out.println("It's player " + board.getSymbol(board.getCurrentPlayer()) + "'s turn. Please enter the coordinates of your next move as x,y: ");
@@ -30,7 +30,7 @@ public class TicTacToeGame {
         }
     }
 
-    public void promptPlayAgain(){
+    private void promptPlayAgain(){
       System.out.println("Do you want to play again? (y/n)");
     }
 
@@ -57,15 +57,15 @@ public class TicTacToeGame {
             }
 
             board.printBoard();
-            //win condition
             if(!board.isTie()){
+                //win condition
                 System.out.println("Player " + board.getWinner() + " has won the game!");
                 switch (board.getWinner()) {
                   case X: ++xWins; break;
                   case O: ++oWins; break;
                 }
             } else {
-            //tie condition
+                //tie condition
                 System.out.println("The game is a tie.");
                 ++ties;
             }
