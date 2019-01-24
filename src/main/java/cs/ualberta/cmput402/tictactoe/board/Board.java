@@ -104,7 +104,7 @@ public class Board {
     }
 
     private void checkTie(){
-        if(occupiedSquares == 8){
+        if(occupiedSquares == ((BOARD_DIM*BOARD_DIM)-1)){
             for (int i = 0; i < BOARD_DIM; i++){
                 for(int j = 0; j < BOARD_DIM; j++){
                     if(isSquareAvailable(i, j)){
